@@ -70,27 +70,41 @@ if (backToTopButton) {
     });
 }
 
-// Collapsible header on scroll for small screens
+// Header behavior - only show when near the top of the page
 const siteHeader = document.querySelector('.site-header');
-let lastScrollTop = 0;
-const scrollThreshold = 50; // Pixels to scroll before hiding header
 const smallScreenMaxWidth = 768; // Matches CSS media query
+const topThreshold = 100; // Pixels from top where header should be visible
+let isHeaderHidden = false;
 
 if (siteHeader) {
-    window.addEventListener('scroll', () => {
-        let st = window.pageYOffset || document.documentElement.scrollTop;
+    function updateHeaderVisibility() {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
         if (window.innerWidth <= smallScreenMaxWidth) {
-            if (st > lastScrollTop && st > scrollThreshold) {
-                // Scroll Down and past threshold
-                siteHeader.classList.add('header-hidden');
-            } else if (st < lastScrollTop || st <= scrollThreshold / 2) { // Added a bit of hysteresis or if scrolling up towards top
-                // Scroll Up or near the top
-                siteHeader.classList.remove('header-hidden');
+            if (scrollPosition > topThreshold) {
+                // If scrolled down past threshold, hide header
+                if (!isHeaderHidden) {
+                    siteHeader.classList.add('header-hidden');
+                    isHeaderHidden = true;
+                }
+            } else {
+                // If near the top, show header
+                if (isHeaderHidden) {
+                    siteHeader.classList.remove('header-hidden');
+                    isHeaderHidden = false;
+                }
             }
         } else {
-            // Ensure header is visible on larger screens or if conditions not met
+            // Always show header on larger screens
             siteHeader.classList.remove('header-hidden');
+            isHeaderHidden = false;
         }
-        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-    }, false);
+    }
+
+    // Update on scroll and resize
+    window.addEventListener('scroll', updateHeaderVisibility);
+    window.addEventListener('resize', updateHeaderVisibility);
+    
+    // Initial check
+    updateHeaderVisibility();
 }
