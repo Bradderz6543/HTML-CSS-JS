@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdultChairUser.com - Purchase</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="Intro.html" class="nav-logo">AdultChairUser.com</a>
+            <nav class="main-nav">
+                <a href="Intro.html"><i class="fas fa-home"></i> Home</a>
+                <a href="my-story.html"><i class="fas fa-user"></i> My Story</a>
+                <a href="her-story.html"><i class="fas fa-user-friends"></i> Her Story</a>
+                <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
+            </nav>
+            <a href="purchase.html" class="nav-cta-button active"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-banner">
+            <img src="../Images/Intro-header plus.gif" alt="Purchase Header">
+        </div>
+
+        <div class="content">
+            <h1>Purchase</h1>
+
+            <div class="purchase-notice">
+                <p><i class="fas fa-info-circle"></i> These products are not yet available for purchase. The buy buttons are currently disabled.</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-item">
+                    <h2>Badge 1</h2>
+                    <p>Disabled not dead</p>
+                    <div class="button-container">
+                        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                        <stripe-buy-button
+                            buy-button-id="buy_btn_1P1w8LRtbxm6TF5RTlVDLoJD"
+                            publishable-key="pk_live_51P1vi7Rtbxm6TF5RbcHky3VUVsahy0yMZqVAwi4gPBR5pE1s6s3h2P5lc27JJ25ZSAyacVDpcYexQIdrUSEMYaeU00dhXGxICT"
+                            class="disabled-button"
+                        >
+                        </stripe-buy-button>
+                    </div>
+                </div>
+    
+                <div class="product-item">
+                    <h2>Badge 2</h2>
+                    <p>ACU Disabled not dead</p>
+                    <div class="button-container">
+                        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                        <stripe-buy-button
+                            buy-button-id="buy_btn_1P1wJDRtbxm6TF5RkG8XTL9h"
+                            publishable-key="pk_live_51P1vi7Rtbxm6TF5RbcHky3VUVsahy0yMZqVAwi4gPBR5pE1s6s3h2P5lc27JJ25ZSAyacVDpcYexQIdrUSEMYaeU00dhXGxICT"
+                            class="disabled-button"
+                        >
+                        </stripe-buy-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="sidebar-nav">
+            <h2>Treatments & Aids</h2>
+            <a href="Page4-Viagra.html">Viagra</a>
+            <a href="Page5-Cialis.html">Cialis</a>
+            <a href="Page3-Erec-Aid.html">Erec-Aid</a>
+            <a href="Page6-Alprostadil.html">Alprostadil</a>
+            <a href="Page7-Implant.html">Implant</a>
+            <h2>Lifestyle & More</h2>
+            <a href="Page10-Outfits & Toys.html">Outfits & Toys</a>
+            <a href="Page11-Apparatus.html">Apparatus</a>
+            <a href="Page9-Chairs & Spares.html">Chairs & Spares</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        </aside>
+
+        <a href="#" class="back-to-top-button"><i class="fas fa-arrow-up"></i> Top</a>
+
+    </main>
+
+    <footer class="site-footer-bottom">
+        &copy; AdultChairUser.com - <a href="disclaimer.html">Disclaimer</a>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

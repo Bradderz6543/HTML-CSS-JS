@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Disclaimer and terms of use for AdultChairUser.com">
+    <title>Disclaimer - AdultChairUser.com</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Images/favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    <style>
+        /* Additional styles specific to the disclaimer page */
+        .disclaimer-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .disclaimer-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .disclaimer-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .disclaimer-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .disclaimer-button {
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .age-warning {
+            background: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid var(--danger);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .age-warning h3 {
+            margin-top: 0;
+            color: var(--danger);
+        }
+        
+        @media (max-width: 576px) {
+            .disclaimer-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .disclaimer-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="Return to Home">
+                <span aria-hidden="true">AdultChairUser.com</span>
+            </a>
+        </div>
+    </header>
+
+    <main id="main-content" class="container">
+        <div class="main-content">
+            <div class="content">
+                <h1>Website Disclaimer</h1>
+                
+                <div class="age-warning">
+                    <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Age Restriction Notice</h3>
+                    <p>This website contains content that is intended for adults only. By proceeding, you confirm that you are at least 18 years of age or the legal age of majority in your jurisdiction.</p>
+                </div>
+                
+                <div class="disclaimer-content">
+                    <p>All information contained on the AdultChairUser.com website is intended for informational and educational purposes only. The information is not intended, nor suited, to be a replacement or substitute for professional medical treatment or for professional medical advice relative to a specific medical question or condition.</p>
+                    
+                    <p>We urge you to always seek the advice of your physician or medical professional with respect to your medical condition or questions. As a recipient of information from this website, you are not establishing a doctor/patient relationship with any physician. There is no replacement for personal medical treatment and advice from your personal physician.</p>
+                    
+                    <p>All the views and opinions given on this site are from a personal perspective only, and all users are urged to seek advice from their own GP's and/or consultant's before attempting to replicate any of the activities mentioned or acquire any of the drugs or equipment mentioned.</p>
+                    
+                    <p>This site contains information and images that are only suitable for people aged 18+. The user, by actively entering the site, claims to be 18+ and accepts full responsibility for their actions.</p>
+                    
+                    <p>The actors, models, actresses and other persons that appear in any visual depiction of any and all sexually explicit conduct appearing or otherwise contained in this Website were over the age of eighteen years at the time of the creation of such. Furthermore, they have consented to being photographed and/or filmed, have signed a model release and provided proof of age, believe it is their right to engage in consensual artistic sexual acts for the entertainment and education of other adults and believe it is your right as an adult to watch them enjoying in educational artistic and consensual fun.</p>
+                    
+                    <p>AdultChairUser.com and AdultChairUser.co.uk are copyright protected. &copy; <span id="current-year">2025</span>.</p>
+                    
+                    <p><strong>By clicking 'I Agree' and entering this site, I confirm that:</strong></p>
+                    <ul>
+                        <li>I am at least 18 years of age or the legal age of majority in my jurisdiction</li>
+                        <li>It is legal for me to view adult content in my location</li>
+                        <li>I have read and understand this disclaimer</li>
+                        <li>I agree to be bound by these terms</li>
+                    </ul>
+                </div>
+                
+                <div class="disclaimer-actions">
+                    <a href="Intro.html" class="disclaimer-button disclaimer-button-yes" aria-label="I agree to the terms and wish to enter the site">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i> I Agree
+                    </a>
+                    <a href="https://www.google.com" class="disclaimer-button disclaimer-button-no" aria-label="I do not agree, take me away from this site">
+                        <i class="fas fa-times-circle" aria-hidden="true"></i> I Decline
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer-bottom">
+        <div class="container">
+            <p>&copy; <span id="current-year-footer">2025</span> AdultChairUser.com - <a href="disclaimer.html">Disclaimer</a> | <a href="contact.html">Contact Us</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Set current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const year = new Date().getFullYear();
+            document.querySelectorAll('[id^="current-year"]').forEach(el => {
+                el.textContent = year;
+            });
+            
+            // Add no-js class to html element and then remove it if JS is enabled
+            document.documentElement.classList.remove('no-js');
+        });
+    </script>
+    
+    <!-- Main JavaScript -->
+    <script src="../js/script.js" defer></script>
+</body>
+</html>
