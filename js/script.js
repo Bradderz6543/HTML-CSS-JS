@@ -70,40 +70,45 @@ if (backToTopButton) {
     });
 }
 
-// Header behavior - only show when near the top of the page
+// Header behavior - only show when at the very top of the page
 const siteHeader = document.querySelector('.site-header');
 const smallScreenMaxWidth = 768; // Matches CSS media query
-const topThreshold = 100; // Pixels from top where header should be visible
-let isHeaderHidden = false;
+const topThreshold = 50; // Reduced threshold for better UX
+let ticking = false;
 
 if (siteHeader) {
     function updateHeaderVisibility() {
         const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         
         if (window.innerWidth <= smallScreenMaxWidth) {
-            if (scrollPosition > topThreshold) {
-                // If scrolled down past threshold, hide header
-                if (!isHeaderHidden) {
-                    siteHeader.classList.add('header-hidden');
-                    isHeaderHidden = true;
-                }
+            // Only show header when at the very top of the page
+            if (scrollPosition <= 0) {
+                siteHeader.classList.remove('header-hidden');
             } else {
-                // If near the top, show header
-                if (isHeaderHidden) {
-                    siteHeader.classList.remove('header-hidden');
-                    isHeaderHidden = false;
-                }
+                siteHeader.classList.add('header-hidden');
             }
         } else {
             // Always show header on larger screens
             siteHeader.classList.remove('header-hidden');
-            isHeaderHidden = false;
         }
+        
+        ticking = false;
     }
-
-    // Update on scroll and resize
-    window.addEventListener('scroll', updateHeaderVisibility);
-    window.addEventListener('resize', updateHeaderVisibility);
+    
+    // Throttle scroll events for better performance
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateHeaderVisibility);
+            ticking = true;
+        }
+    });
+    
+    // Handle resize events
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > smallScreenMaxWidth) {
+            siteHeader.classList.remove('header-hidden');
+        }
+    });
     
     // Initial check
     updateHeaderVisibility();
