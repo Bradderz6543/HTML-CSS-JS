@@ -763,27 +763,26 @@ a:hover {
     border-top: 1px solid var(--border-color);
 }
 
-/* Adjusted .disclaimer-button from general button styles for better scaling */
+/* Disclaimer button styles with improved responsiveness */
 .disclaimer-button {
-  /* display: inline-flex; Inherited */
-  /* align-items: center; Inherited */
-  /* justify-content: center; Inherited */
-  /* gap: 0.5rem; Inherited */
-  /* font-size: 1rem; Inherited */
-  /* font-weight: 600; Inherited */
-  /* color: white; Inherited */
-  /* text-decoration: none; Inherited */
-  /* background: var(--primary); Inherited and overridden by specific classes */
-  padding: 0.75rem 1.5rem; /* Adjusted horizontal padding */
-  /* border-radius: 50px; Inherited */
-  /* border: none; Inherited */
-  /* cursor: pointer; Inherited */
-  /* transition: var(--transition); Inherited */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
   text-align: center;
-  margin: 0.5rem 0; /* Ensure top/bottom margin, no side margin to conflict with width:100% or flex gap */
-  flex-grow: 1; /* Allow buttons to grow and fill space */
-  flex-basis: 200px; /* Base width before growing/shrinking */
-  max-width: 300px; /* Prevent buttons from becoming too wide */
+  margin: 0.5rem 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* .disclaimer-button:hover inherited */
@@ -803,17 +802,27 @@ a:hover {
 }
 
 /* Media Query for Disclaimer Buttons from disclaimer.html */
-@media (max-width: 576px) {
-    .disclaimer-actions {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .disclaimer-button {
-        width: 100%; /* Make buttons full width on small screens */
-        max-width: none; /* Remove max-width constraint */
-        flex-basis: auto; /* Reset flex-basis */
-    }
+/* Responsive adjustments for disclaimer buttons */
+.disclaimer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .disclaimer-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .disclaimer-button {
+    width: 100%;
+    margin: 0.25rem 0;
+  }
 }
 
 @media (max-width: 1024px) {
