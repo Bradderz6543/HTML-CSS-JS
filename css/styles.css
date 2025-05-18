@@ -711,58 +711,111 @@ a:hover {
     pointer-events: none;
 }
 
+.disabled-button:hover {
+  background: var(--secondary); /* Keep it looking disabled */
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 /* Ensure main container on purchase page isn't overly constrained by body flex settings */
 /* This might need adjustment depending on how index.html body is handled vs other pages */
 /* For now, let's assume .container on product pages has enough width */
 
-/* Disclaimer Page Action Buttons */
-.disclaimer-actions {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #444; /* Separator line */
+/* Disclaimer Page Specific Styles */
+.disclaimer-content {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
 }
 
-.disclaimer-button {
-    display: inline-block;
-    font-size: 1.1rem;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 25px; /* Pill shape */
-    transition: background-color 0.2s ease-in-out, transform 0.2s ease, box-shadow 0.2s ease;
-    margin: 10px;
-    min-width: 120px;
-    border: 2px solid transparent;
+.disclaimer-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
 }
+
+.disclaimer-content p:last-child {
+    margin-bottom: 0;
+}
+
+.age-warning {
+    background: rgba(220, 53, 69, 0.1); /* var(--danger) with alpha */
+    border-left: 4px solid var(--danger);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.age-warning h3 {
+    margin-top: 0;
+    color: var(--danger);
+}
+
+.disclaimer-actions {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens if needed */
+    gap: 1rem; /* Reduced gap slightly */
+    justify-content: center;
+    margin-top: 2rem; /* Reduced margin slightly */
+    padding-top: 1.5rem; /* Reduced padding slightly */
+    border-top: 1px solid var(--border-color);
+}
+
+/* Adjusted .disclaimer-button from general button styles for better scaling */
+.disclaimer-button {
+  /* display: inline-flex; Inherited */
+  /* align-items: center; Inherited */
+  /* justify-content: center; Inherited */
+  /* gap: 0.5rem; Inherited */
+  /* font-size: 1rem; Inherited */
+  /* font-weight: 600; Inherited */
+  /* color: white; Inherited */
+  /* text-decoration: none; Inherited */
+  /* background: var(--primary); Inherited and overridden by specific classes */
+  padding: 0.75rem 1.5rem; /* Adjusted horizontal padding */
+  /* border-radius: 50px; Inherited */
+  /* border: none; Inherited */
+  /* cursor: pointer; Inherited */
+  /* transition: var(--transition); Inherited */
+  text-align: center;
+  margin: 0.5rem 0; /* Ensure top/bottom margin, no side margin to conflict with width:100% or flex gap */
+  flex-grow: 1; /* Allow buttons to grow and fill space */
+  flex-basis: 200px; /* Base width before growing/shrinking */
+  max-width: 300px; /* Prevent buttons from becoming too wide */
+}
+
+/* .disclaimer-button:hover inherited */
 
 .disclaimer-button-yes {
-    background-color: #007bff; /* Primary action blue */
-    border-color: #007bff;
-}
-
-.disclaimer-button-yes:hover, .disclaimer-button-yes:focus {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    outline: none;
+  background: var(--primary);
 }
 
 .disclaimer-button-no {
-    background-color: #6c757d; /* Secondary action gray */
-    border-color: #6c757d;
+  background: var(--secondary);
 }
 
 .disclaimer-button-no:hover, .disclaimer-button-no:focus {
-    background-color: #545b62;
-    border-color: #545b62;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    outline: none;
+  background: var(--dark); /* Using a darker shade for secondary hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
+/* Media Query for Disclaimer Buttons from disclaimer.html */
+@media (max-width: 576px) {
+    .disclaimer-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .disclaimer-button {
+        width: 100%; /* Make buttons full width on small screens */
+        max-width: none; /* Remove max-width constraint */
+        flex-basis: auto; /* Reset flex-basis */
+    }
+}
+
 @media (max-width: 1024px) {
   .container {
     padding: 1.5rem;
