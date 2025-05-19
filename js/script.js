@@ -22,6 +22,124 @@ if (mainImage) {
     });
 }
 
+// Modern Slideshow Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const indicatorsContainer = document.querySelector('.slide-indicators');
+    let currentSlide = 0;
+    let slideInterval;
+    const slideDuration = 5000; // 5 seconds
+
+    // Create indicators
+    slides.forEach((_, index) => {
+        const indicator = document.createElement('div');
+        indicator.classList.add('slide-indicator');
+        if (index === 0) indicator.classList.add('active');
+        indicator.addEventListener('click', () => goToSlide(index));
+        indicatorsContainer.appendChild(indicator);
+    });
+
+    const indicators = document.querySelectorAll('.slide-indicator');
+
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        // Show current slide
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+        currentSlide = index;
+    }
+
+
+    function nextSlide() {
+        let newIndex = (currentSlide + 1) % slides.length;
+        showSlide(newIndex);
+    }
+
+
+    function prevSlide() {
+        let newIndex = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(newIndex);
+    }
+
+
+    function goToSlide(index) {
+        showSlide(index);
+        resetInterval();
+    }
+
+
+    function startInterval() {
+        slideInterval = setInterval(nextSlide, slideDuration);
+    }
+
+
+    function resetInterval() {
+        clearInterval(slideInterval);
+        startInterval();
+    }
+
+    // Event listeners
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetInterval();
+    });
+
+
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetInterval();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            nextSlide();
+            resetInterval();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+            resetInterval();
+        }
+    });
+
+    // Touch events for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const slideshow = document.querySelector('.slideshow');
+
+    slideshow.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    slideshow.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum distance to consider it a swipe
+        const swipeDistance = touchStartX - touchEndX;
+
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                nextSlide(); // Swipe left
+            } else {
+                prevSlide(); // Swipe right
+            }
+            resetInterval();
+        }
+    }
+
+
+    // Initialize
+    showSlide(0);
+    startInterval();
+});
+
 // Force desktop mode based on cookie (existing code, ensure it doesn't conflict)
 function getCookie(name) {
     var cookieValue = null;
