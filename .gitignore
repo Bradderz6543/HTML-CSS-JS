@@ -3,3 +3,7 @@ node_modules/
 *.log
 .env
 .vscode/
+
+# Custom exclusions
+CNAME
+deployment/
