@@ -1,108 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Resources and information for adults with disabilities to enhance their relationships and intimacy">
-    <title>AdultChairUser.com - Resources for Adults with Disabilities</title>
-    
-    <!-- Preconnect to external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="Images/favicon.png">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="Images/Intro-header.jpg" as="image">
-    <link rel="preload" href="Images/notdead.gif" as="image">
-    <link rel="preload" href="Images/wheelchair.jpg" as="image">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Comprehensive resources and support for adults with disabilities to enhance their relationships, intimacy, and quality of life">
+  <title>AdultChairUser - Empowering Lives, Enhancing Relationships</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="icon" type="image/svg+xml" href="Images/favicon.svg">
+
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    
-    <header class="site-header">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo" aria-label="Adult Chair User Home">
-                <span aria-hidden="true">AdultChairUser.com</span>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <div class="nav__brand">
+        <span class="nav__logo" aria-label="AdultChairUser">
+          <i class="fas fa-heart" aria-hidden="true"></i>
+          <span>AdultChairUser</span>
+        </span>
+      </div>
+      <!-- No navigation items on landing page -->
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero__container container">
+        <div class="hero__content">
+          <h1 class="hero__title">
+            Welcome to<br>
+            <span class="hero__title-accent">AdultChairUser.com</span>
+          </h1>
+          <p class="hero__description">
+            Empowering adults with disabilities to enjoy fulfilling relationships and intimacy. 
+            Breaking down barriers and providing practical advice for enhancing relationships.
+          </p>
+          <div class="hero__buttons">
+            <a href="html/disclaimer.html" class="btn btn--primary">
+              <i class="fas fa-door-open" aria-hidden="true"></i>
+              Enter Site
             </a>
+          </div>
+          <div class="hero__notice">
+            <p><strong>Important:</strong> This site is intended for adults 18 years of age or older.</p>
+          </div>
         </div>
-    </header>
-
-    <main id="main-content" class="container">
-        <div class="main-content">
-            <div class="page-banner">
-                <img src="Images/Intro-header.jpg" 
-                     alt="Welcome to Adult Chair User - Resources for adults with disabilities" 
-                     width="1200" 
-                     height="400"
-                     loading="eager">
-            </div>
-            
-            <div class="content">
-                <h1>Welcome to AdultChairUser.com</h1>
-                <p class="lead">Empowering adults with disabilities to enjoy fulfilling relationships and intimacy.</p>
-                
-                <div class="cta-container" style="text-align: center; margin: 3rem 0;">
-                    <a href="html/disclaimer.html" class="enter-link" style="display: inline-block;">
-                        <span>Enter Site</span>
-                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                </div>
-                
-                <div class="image-container" style="text-align: center;">
-                    <img src="Images/notdead.gif" 
-                         alt="I'm not dead - A positive message about living fully with disabilities" 
-                         id="mainImage"
-                         width="600"
-                         height="400"
-                         loading="lazy">
-                </div>
-                
-                <section class="intro-text" style="margin-top: 3rem;">
-                    <h2>About This Site</h2>
-                    <p>This website is dedicated to providing resources, information, and support for adults with disabilities who want to maintain active and fulfilling intimate relationships.</p>
-                    <p>Our goal is to break down barriers and provide practical advice for enhancing intimacy and relationships.</p>
-                </section>
-            </div>
+        <div class="hero__image">
+          <div class="hero__visual">
+            <img src="Images/notdead.gif" alt="I'm not dead - A positive message about living fully with disabilities" class="hero__gif">
+          </div>
         </div>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <footer class="site-footer-bottom">
-        <div class="container">
-            <p>&copy; <span id="current-year">2025</span> AdultChairUser.com - <a href="html/disclaimer.html">Disclaimer</a> | <a href="html/contact.html">Contact Us</a></p>
-            <p class="small-text" style="font-size: 0.8rem; opacity: 0.8; margin-top: 0.5rem;">
-                This site is intended for adults 18 years of age or older.
-            </p>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span id="current-year">2025</span> AdultChairUser. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-        
-        // Add loading="lazy" to all images that don't have it yet
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img:not([loading])');
-            images.forEach(img => {
-                if (!img.hasAttribute('loading')) {
-                    img.setAttribute('loading', 'lazy');
-                }
-            });
-            
-            // Add no-js class to html element and then remove it if JS is enabled
-            document.documentElement.classList.remove('no-js');
-        });
-    </script>
-    
-    <!-- Main JavaScript -->
-    <script src="js/script.js" defer></script>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
