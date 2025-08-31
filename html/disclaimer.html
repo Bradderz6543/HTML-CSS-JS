@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Disclaimer and terms of use for AdultChairUser.com">
+    <title>Disclaimer - AdultChairUser.com</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Images/favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    
+    <header class="header" id="header">
+        <nav class="nav container" aria-label="Main navigation">
+            <div class="nav__brand">
+                <span class="nav__logo" aria-label="AdultChairUser">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                    <span>AdultChairUser</span>
+                </span>
+            </div>
+            <!-- No navigation items on disclaimer page -->
+        </nav>
+    </header>
+
+    <main id="main-content" class="section">
+        <div class="container">
+            <div class="section__header">
+                <h1 class="section__title">Website Disclaimer</h1>
+                <p class="section__subtitle">Please read carefully before entering</p>
+            </div>
+
+            <section class="disclaimer__notice" aria-label="Age restriction notice">
+                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                <div>
+                    <h3>Age Restriction</h3>
+                    <p>This website contains adult content intended for individuals 18+ (or the legal age in your jurisdiction). By proceeding, you confirm you meet this requirement.</p>
+                </div>
+            </section>
+
+            <article class="disclaimer__card" aria-label="Disclaimer details">
+                <p>All information contained on the AdultChairUser.com website is intended for informational and educational purposes only. The information is not intended, nor suited, to be a replacement or substitute for professional medical treatment or for professional medical advice relative to a specific medical question or condition.</p>
+
+                <p>We urge you to always seek the advice of your physician or medical professional with respect to your medical condition or questions. As a recipient of information from this website, you are not establishing a doctor/patient relationship with any physician. There is no replacement for personal medical treatment and advice from your personal physician.</p>
+
+                <p>All the views and opinions given on this site are from a personal perspective only, and all users are urged to seek advice from their own GP's and/or consultant's before attempting to replicate any of the activities mentioned or acquire any of the drugs or equipment mentioned.</p>
+
+                <p>This site contains information and images that are only suitable for people aged 18+. The user, by actively entering the site, claims to be 18+ and accepts full responsibility for their actions.</p>
+
+                <p>The actors, models, actresses and other persons that appear in any visual depiction of any and all sexually explicit conduct appearing or otherwise contained in this Website were over the age of eighteen years at the time of the creation of such. Furthermore, they have consented to being photographed and/or filmed, have signed a model release and provided proof of age, believe it is their right to engage in consensual artistic sexual acts for the entertainment and education of other adults and believe it is your right as an adult to watch them enjoying in educational artistic and consensual fun.</p>
+
+                <p class="disclaimer__copyright">AdultChairUser.com and AdultChairUser.co.uk are copyright protected. &copy; <span id="current-year">2025</span>.</p>
+
+                <div class="disclaimer__list">
+                    <p class="disclaimer__lead"><strong>By clicking “I Agree”, I confirm that:</strong></p>
+                    <ul>
+                        <li>I am at least 18 years of age or the legal age of majority in my jurisdiction</li>
+                        <li>It is legal for me to view adult content in my location</li>
+                        <li>I have read and understand this disclaimer</li>
+                        <li>I agree to be bound by these terms</li>
+                    </ul>
+                </div>
+            </article>
+
+            <div class="disclaimer__actions">
+                <a href="Intro.html" class="btn btn--primary" aria-label="I agree to the terms and wish to enter the site">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    I Agree
+                </a>
+                <a href="https://www.google.com" class="btn btn--outline" aria-label="I do not agree, take me away from this site" rel="nofollow noopener">
+                    <i class="fas fa-times-circle" aria-hidden="true"></i>
+                    I Decline
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__bottom">
+                <p class="footer__copy">&copy; <span id="current-year-footer">2025</span> AdultChairUser. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Set current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const year = new Date().getFullYear();
+            document.querySelectorAll('[id^="current-year"]').forEach(el => {
+                el.textContent = year;
+            });
+            
+            // Add no-js class to html element and then remove it if JS is enabled
+            document.documentElement.classList.remove('no-js');
+        });
+    </script>
+    
+    <!-- Main JavaScript -->
+    <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
