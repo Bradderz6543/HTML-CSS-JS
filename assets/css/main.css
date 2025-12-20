@@ -1,6 +1,3 @@
-/*=============== GOOGLE FONTS ===============*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
-
 /*=============== VARIABLES CSS ===============*/
 :root {
   --header-height: 3.5rem;
@@ -101,11 +98,6 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   width: 100%;
-}
-
-/* Prevent horizontal overflow */
-* {
-  max-width: 100%;
 }
 
 /* Ensure all containers stay within viewport */
@@ -762,6 +754,23 @@ img {
 .contact__form-button {
   justify-self: flex-start;
   margin-top: var(--mb-1);
+}
+
+.form-message {
+  padding: 1rem;
+  border-radius: .5rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.form-message--error {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.form-message--success {
+  background-color: #28a745;
+  color: #fff;
 }
 
 /*=============== FOOTER ===============*/

@@ -95,46 +95,6 @@ const contactForm = document.getElementById('contact-form'),
       contactSubject = document.getElementById('contact-subject'),
       contactMessage = document.getElementById('contact-message')
 
-const sendEmail = (e) => {
-    e.preventDefault()
-    
-    // Check if the field has a value
-    if(contactName.value === '' || contactEmail.value === '' || contactSubject.value === '' || contactMessage.value === ''){
-        // Add and remove color
-        contactForm.classList.remove('color-green')
-        contactForm.classList.add('color-red')
-        
-        // Show message
-        setTimeout(() => {
-            contactForm.classList.remove('color-red')
-        }, 3000)
-    } else {
-        // Create mailto link
-        const subject = encodeURIComponent(contactSubject.value)
-        const body = encodeURIComponent(`Name: ${contactName.value}\nEmail: ${contactEmail.value}\n\nMessage:\n${contactMessage.value}`)
-        const mailtoLink = `mailto:adultchairuser@gmail.com?subject=${subject}&body=${body}`
-        
-        // Open email client
-        window.location.href = mailtoLink
-        
-        // Add color during sending
-        contactForm.classList.add('color-green')
-        
-        // Remove message after three seconds
-        setTimeout(() => {
-            contactForm.classList.remove('color-green')
-        }, 3000)
-        
-        // Clear input fields
-        contactName.value = ''
-        contactEmail.value = ''
-        contactSubject.value = ''
-        contactMessage.value = ''
-    }
-}
-
-if (contactForm) contactForm.addEventListener('submit', sendEmail)
-
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 if (typeof ScrollReveal !== 'undefined') {
   const sr = ScrollReveal({
@@ -254,14 +214,6 @@ function showFormMessage(form, message, isError = false) {
     const messageDiv = document.createElement('div')
     messageDiv.className = `form-message ${isError ? 'form-message--error' : 'form-message--success'}`
     messageDiv.textContent = message
-    
-    // Add styles
-    messageDiv.style.padding = '1rem'
-    messageDiv.style.borderRadius = '0.5rem'
-    messageDiv.style.marginTop = '1rem'
-    messageDiv.style.textAlign = 'center'
-    messageDiv.style.backgroundColor = isError ? '#dc3545' : '#28a745'
-    messageDiv.style.color = '#fff'
     
     form.appendChild(messageDiv)
     
