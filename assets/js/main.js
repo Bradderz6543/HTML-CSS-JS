@@ -163,6 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add loading states for form submission
     const forms = document.querySelectorAll('form')
     forms.forEach(form => {
+        if (form.dataset.skipLoading === 'true') return
+
         form.addEventListener('submit', function() {
             const submitButton = form.querySelector('button[type="submit"]')
             if (submitButton) {
@@ -227,11 +229,14 @@ function showFormMessage(form, message, isError = false) {
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault()
+        e.stopImmediatePropagation()
         
         const name = contactName.value.trim()
         const email = contactEmail.value.trim()
         const subject = contactSubject.value.trim()
         const message = contactMessage.value.trim()
+        const submitButton = this.querySelector('button[type="submit"]')
+        const originalButtonHtml = submitButton ? submitButton.innerHTML : ''
         
         // Validation
         if (!name) {
@@ -268,6 +273,11 @@ if (contactForm) {
         const emailSubject = encodeURIComponent(subject)
         const emailBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)
         const mailtoLink = `mailto:adultchairuser@gmail.com?subject=${emailSubject}&body=${emailBody}`
+
+        if (submitButton) {
+            submitButton.disabled = true
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening email...'
+        }
         
         window.location.href = mailtoLink
         
@@ -275,5 +285,12 @@ if (contactForm) {
         
         // Clear form
         this.reset()
+
+        if (submitButton) {
+            setTimeout(() => {
+                submitButton.disabled = false
+                submitButton.innerHTML = originalButtonHtml || '<i class="fas fa-paper-plane"></i> Send Message'
+            }, 2000)
+        }
     })
 }
