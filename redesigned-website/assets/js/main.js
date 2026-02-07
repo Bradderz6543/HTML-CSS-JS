@@ -48,10 +48,14 @@ function scrollActive(){
               sectionTop = current.offsetTop - 58,
               sectionId = current.getAttribute('id')
 
+        const link = document.querySelector(`.nav__menu a[href*="${sectionId}"]`)
+
+        if(!link) return
+
         if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+            link.classList.add('active-link')
         }else{
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+            link.classList.remove('active-link')
         }
     })
 }
@@ -70,14 +74,25 @@ const links = document.querySelectorAll('a[href^="#"]')
 
 for (const link of links) {
     link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href') || ''
+
+        // If href is just '#', scroll to top
+        if (href === '#' || href.length === 1) {
+            e.preventDefault()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+            return
+        }
+
+        const target = document.querySelector(href)
+        if (!target) return
+
         e.preventDefault()
-        
-        const href = this.getAttribute('href')
-        const offsetTop = document.querySelector(href).offsetTop
-        
-        scroll({
+
+        const offsetTop = target.getBoundingClientRect().top + window.pageYOffset
+
+        window.scrollTo({
             top: offsetTop - 70,
-            behavior: "smooth"
+            behavior: 'smooth'
         })
     })
 }
@@ -127,7 +142,7 @@ const sendEmail = (e) => {
     }
 }
 
-contactForm.addEventListener('submit', sendEmail)
+// Submit handling is implemented below in the enhanced validation block.
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
