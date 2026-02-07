@@ -97,18 +97,21 @@ const contactForm = document.getElementById('contact-form'),
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 if (typeof ScrollReveal !== 'undefined') {
+  // Faster scroll-in animations (previously felt sluggish)
   const sr = ScrollReveal({
-      distance: '60px',
-      duration: 2500,
-      delay: 400,
+      distance: '48px',
+      duration: 1200,
+      delay: 150,
+      easing: 'cubic-bezier(0.2, 0.9, 0.2, 1)',
       // reset: true
   })
-  sr.reveal('.hero__content, .section__title', {delay: 600})
-  sr.reveal('.hero__image', {delay: 700, origin: 'top'})
-  sr.reveal('.about__content, .contact__content', {origin: 'left'})
-  sr.reveal('.about__image, .contact__form', {origin: 'right'})
-  sr.reveal('.resource__card, .story__card, .gallery__item', {interval: 100})
-  sr.reveal('.footer__content', {interval: 100, origin: 'bottom'})
+
+  sr.reveal('.hero__content, .section__title', { delay: 250 })
+  sr.reveal('.hero__image', { delay: 300, origin: 'top' })
+  sr.reveal('.about__content, .contact__content', { delay: 150, origin: 'left' })
+  sr.reveal('.about__image, .contact__form', { delay: 150, origin: 'right' })
+  sr.reveal('.resource__card, .story__card, .gallery__item', { interval: 60 })
+  sr.reveal('.footer__content', { interval: 60, origin: 'bottom' })
 }
 
 /*=============== ACCESSIBILITY IMPROVEMENTS ===============*/
