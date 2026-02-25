@@ -1,7 +1,7 @@
 // Image hover effect code (for index.html)
 const mainImage = document.getElementById('mainImage');
 if (mainImage) {
-    const notDeadImagePath = 'Images/notdead.gif';
+    const notDeadImagePath = 'Images/notdead.png';
     const wheelchairImagePath = 'Images/wheelchair.jpg';
 
     mainImage.addEventListener('mouseover', () => {

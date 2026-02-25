@@ -158,6 +158,15 @@ body {
   margin: 0.5rem 0;
 }
 
+.enter-link a:link,
+.enter-link a:visited,
+.nav-cta-button:link,
+.nav-cta-button:visited,
+.disclaimer-button:link,
+.disclaimer-button:visited {
+  color: #fff;
+}
+
 .enter-link a:hover,
 .nav-cta-button:hover,
 .disclaimer-button:hover {
@@ -496,6 +505,11 @@ a:hover {
     border-color: #007bff;
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top-button:link,
+.back-to-top-button:visited {
+    color: #fff;
 }
 
 /* Site Footer Bottom */
@@ -913,6 +927,11 @@ a:hover {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.contact-email-link a:link,
+.contact-email-link a:visited {
+    color: #fff;
+}
+
 .contact-email-link a:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
@@ -1262,4 +1281,104 @@ html {
   .page-break {
     page-break-before: always;
   }
+}
+
+/*====================================
+= Professional Consistency Overrides =
+====================================*/
+:root {
+  --brand-bg: #0f1722;
+  --brand-surface: #162131;
+  --brand-surface-soft: #1b2a3d;
+  --brand-border: #2a3b53;
+  --brand-text: #f3f7fc;
+  --brand-muted: #b3c1d2;
+  --brand-accent: #2f8cff;
+  --brand-accent-strong: #1f6fd9;
+}
+
+body {
+  background: linear-gradient(180deg, #0d1622 0%, var(--brand-bg) 100%);
+  color: var(--brand-text);
+}
+
+.site-header,
+.site-footer-bottom,
+.content,
+.sidebar-nav,
+.product-item,
+.additional-content-warning,
+.purchase-notice,
+.gallery-placeholder,
+.flash-content-item {
+  border: 1px solid var(--brand-border);
+}
+
+.site-header {
+  background: color-mix(in srgb, var(--brand-surface) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.nav-logo,
+.main-nav a:link,
+.main-nav a:visited {
+  color: var(--brand-text);
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: #fff;
+  background-color: color-mix(in srgb, var(--brand-accent) 24%, transparent);
+}
+
+.content,
+.sidebar-nav,
+.product-item,
+.additional-content-warning,
+.flash-content-item {
+  background: var(--brand-surface);
+}
+
+.content p,
+.product-item p,
+.flash-content-item p {
+  color: var(--brand-muted);
+}
+
+.sidebar-nav h2,
+.product-page-content h2 {
+  color: #8ec1ff;
+  border-bottom-color: var(--brand-border);
+}
+
+.sidebar-nav a {
+  color: var(--brand-muted);
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a:focus,
+.sidebar-nav a.active {
+  color: #fff;
+  background: color-mix(in srgb, var(--brand-accent) 24%, transparent);
+}
+
+.enter-link a,
+.nav-cta-button,
+.disclaimer-button,
+.contact-email-link a,
+.back-to-top-button {
+  color: #fff !important;
+  background: linear-gradient(135deg, var(--brand-accent), var(--brand-accent-strong));
+}
+
+.enter-link a:hover,
+.nav-cta-button:hover,
+.disclaimer-button:hover,
+.contact-email-link a:hover {
+  background: linear-gradient(135deg, var(--brand-accent-strong), #165eb9);
+}
+
+.back-to-top-button:hover {
+  color: #fff;
+  border-color: transparent;
 }
