@@ -13,6 +13,8 @@
   --body-color: hsl(var(--hue), 40%, 8%);
   --container-color: hsl(var(--hue), 40%, 12%);
   --shadow-color: hsla(var(--hue), 90%, 30%, .1);
+  --hero-glow-1: hsla(197, 84%, 56%, .2);
+  --hero-glow-2: hsla(250, 84%, 64%, .15);
   --scroll-bar-color: hsl(var(--hue), 20%, 20%);
   --scroll-thumb-color: hsl(var(--hue), 20%, 30%);
 
@@ -98,6 +100,10 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   width: 100%;
+  background-image:
+    radial-gradient(circle at 8% 10%, var(--hero-glow-1) 0, transparent 36%),
+    radial-gradient(circle at 84% 12%, var(--hero-glow-2) 0, transparent 42%),
+    linear-gradient(180deg, color-mix(in srgb, var(--body-color) 90%, #000) 0%, var(--body-color) 65%, color-mix(in srgb, var(--body-color) 92%, #05070f) 100%);
 }
 
 /* Ensure all containers stay within viewport */
@@ -121,6 +127,15 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--first-color) 75%, #fff);
+  outline-offset: 3px;
+  border-radius: .45rem;
 }
 
 button {
@@ -185,17 +200,18 @@ img {
   display: inline-flex;
   align-items: center;
   column-gap: .5rem;
-  background-color: var(--first-color);
+  background: linear-gradient(135deg, var(--first-color), color-mix(in srgb, var(--first-color) 70%, #7bdcff));
   color: var(--title-color);
   padding: 1rem 1.75rem;
   border-radius: .5rem;
   font-weight: var(--font-medium);
-  transition: .3s;
+  box-shadow: 0 10px 25px color-mix(in srgb, var(--first-color) 35%, transparent);
+  transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
 }
 
 .btn:hover {
-  background-color: var(--first-color-alt);
   transform: translateY(-2px);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--first-color) 42%, transparent);
 }
 
 .btn--primary {
@@ -247,6 +263,7 @@ img {
   left: 0;
   z-index: var(--z-fixed);
   transition: .4s;
+  border-bottom: 1px solid color-mix(in srgb, var(--shadow-color) 60%, transparent);
 }
 
 .nav {
@@ -307,7 +324,10 @@ img {
 
 /*=============== HERO ===============*/
 .hero {
-  background-color: var(--container-color);
+  background:
+    radial-gradient(90rem 25rem at 10% -5%, color-mix(in srgb, var(--first-color) 18%, transparent), transparent 60%),
+    radial-gradient(60rem 30rem at 85% -10%, color-mix(in srgb, #1fd1b0 12%, transparent), transparent 60%),
+    var(--container-color);
   padding: 8rem 0 6rem;
 }
 
@@ -396,10 +416,11 @@ img {
 }
 
 .hero__notice {
-  background-color: var(--body-color);
+  background-color: color-mix(in srgb, var(--body-color) 82%, #0f1724);
   padding: 1rem;
   border-radius: .5rem;
   border-left: 4px solid var(--first-color);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--first-color) 20%, transparent);
 }
 
 .hero__notice p {
@@ -416,12 +437,22 @@ img {
 
 .hero__visual {
   max-width: 400px;
+  position: relative;
 }
 
 .hero__gif {
   width: 100%;
   border-radius: 1rem;
-  box-shadow: 0 8px 32px var(--shadow-color);
+  box-shadow: 0 14px 42px color-mix(in srgb, var(--first-color) 20%, rgba(0, 0, 0, .45));
+}
+
+.hero__visual::after {
+  content: '';
+  position: absolute;
+  inset: -1rem;
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--first-color) 28%, transparent);
+  pointer-events: none;
 }
 
 /*=============== ABOUT/MY STORY ===============*/
@@ -466,13 +497,14 @@ img {
   padding: 2rem;
   border-radius: 1rem;
   text-align: center;
-  transition: .3s;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
   border: 1px solid transparent;
 }
 
 .resource__card:hover {
   transform: translateY(-5px);
   border-color: var(--first-color);
+  box-shadow: 0 16px 34px color-mix(in srgb, var(--first-color) 16%, transparent);
 }
 
 .resource__icon {
@@ -554,11 +586,12 @@ img {
   background-color: var(--container-color);
   padding: 2rem;
   border-radius: 1rem;
-  transition: .3s;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .story__card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 16px 34px color-mix(in srgb, var(--first-color) 16%, transparent);
 }
 
 .story__header {
@@ -786,6 +819,7 @@ img {
 .footer {
   background-color: var(--container-color);
   padding: 4rem 0 2rem;
+  border-top: 1px solid color-mix(in srgb, var(--shadow-color) 65%, transparent);
 }
 
 .footer__container {
@@ -1295,5 +1329,15 @@ img {
   .container {
     max-width: 100%;
     padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -3,11 +3,29 @@ const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
       navClose = document.getElementById('nav-close')
 
+function setMenuA11yState(isOpen) {
+    if (!navMenu) return
+    navMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true')
+    if (navToggle) navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
+}
+
+function openMenu() {
+    if (!navMenu) return
+    navMenu.classList.add('show-menu')
+    setMenuA11yState(true)
+}
+
+function closeMenu() {
+    if (!navMenu) return
+    navMenu.classList.remove('show-menu')
+    setMenuA11yState(false)
+}
+
 /*===== MENU SHOW =====*/
 /* Validate if constant exists */
 if(navToggle){
     navToggle.addEventListener('click', () =>{
-        navMenu.classList.add('show-menu')
+        openMenu()
     })
 }
 
@@ -15,7 +33,7 @@ if(navToggle){
 /* Validate if constant exists */
 if(navClose){
     navClose.addEventListener('click', () =>{
-        navMenu.classList.remove('show-menu')
+        closeMenu()
     })
 }
 
@@ -25,7 +43,7 @@ const navLink = document.querySelectorAll('.nav__link')
 function linkAction(){
     const navMenu = document.getElementById('nav-menu')
     // When we click on each nav__link, we remove the show-menu class
-    navMenu.classList.remove('show-menu')
+    if (navMenu) closeMenu()
 }
 navLink.forEach(n => n.addEventListener('click', linkAction))
 
@@ -63,6 +81,7 @@ window.addEventListener('scroll', scrollActive)
 /*=============== SHOW SCROLL UP ===============*/ 
 function scrollUp(){
     const scrollUp = document.getElementById('scroll-up');
+    if (!scrollUp) return
     // When the scroll is higher than 560 viewport height, add the show-scroll class to the a tag with the scroll-top class
     if(this.scrollY >= 560) scrollUp.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll')
 }
@@ -125,6 +144,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Focus management
     if (navToggle) {
+        if (navToggle.tagName !== 'BUTTON') {
+            navToggle.setAttribute('role', 'button')
+            navToggle.setAttribute('tabindex', '0')
+        }
+        navToggle.setAttribute('aria-label', navToggle.getAttribute('aria-label') || 'Open navigation menu')
+        navToggle.setAttribute('aria-controls', 'nav-menu')
+        navToggle.setAttribute('aria-expanded', 'false')
+
+        navToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                openMenu()
+            }
+        })
+
         navToggle.addEventListener('click', () => {
             setTimeout(() => {
                 if (navClose) navClose.focus()
@@ -133,10 +167,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Keyboard navigation for mobile menu
+    if (navClose && navClose.tagName !== 'BUTTON') {
+        navClose.setAttribute('role', 'button')
+        navClose.setAttribute('tabindex', '0')
+    }
+    if (navClose) {
+        navClose.setAttribute('aria-label', navClose.getAttribute('aria-label') || 'Close navigation menu')
+        navClose.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                closeMenu()
+                if (navToggle) navToggle.focus()
+            }
+        })
+    }
+
     if (navMenu) {
+        navMenu.setAttribute('aria-hidden', 'true')
         navMenu.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                navMenu.classList.remove('show-menu')
+                closeMenu()
                 if (navToggle) navToggle.focus()
             }
         })
@@ -150,18 +200,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Lazy loading for images
     const images = document.querySelectorAll('img[data-src]')
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target
-                img.src = img.dataset.src
-                img.classList.remove('lazy')
-                imageObserver.unobserve(img)
-            }
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target
+                    img.src = img.dataset.src
+                    img.classList.remove('lazy')
+                    observer.unobserve(img)
+                }
+            })
         })
-    })
-    
-    images.forEach(img => imageObserver.observe(img))
+        images.forEach(img => imageObserver.observe(img))
+    } else {
+        images.forEach(img => {
+            img.src = img.dataset.src
+            img.classList.remove('lazy')
+        })
+    }
     
     // Add loading states for form submission
     const forms = document.querySelectorAll('form')
