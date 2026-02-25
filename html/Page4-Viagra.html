@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viagra (Sildenafil Citrate) - AdultChairUser.com</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+    <script>if(localStorage.getItem("selected-theme") === "light"){document.body.classList.add("light-theme");}</script>
     <header class="site-header">
         <div class="nav-container">
             <a href="Intro.html" class="nav-logo">AdultChairUser.com</a>
@@ -17,7 +18,10 @@
                 <a href="my-story.html"><i class="fas fa-user"></i> My Story</a>
                 <a href="her-story.html"><i class="fas fa-user-friends"></i> Her Story</a>
                 <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
-            </nav>
+                        <div class="nav__btns">
+                <i class="change-theme fas fa-moon" id="theme-button" aria-label="Toggle theme"></i>
+            </div>
+        </nav>
             <a href="purchase.html" class="nav-cta-button"><i class="fas fa-shopping-cart"></i> Shop Now</a>
         </div>
     </header>

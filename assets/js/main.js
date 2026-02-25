@@ -115,23 +115,7 @@ const contactForm = document.getElementById('contact-form'),
       contactMessage = document.getElementById('contact-message')
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
-if (typeof ScrollReveal !== 'undefined') {
-  // Faster scroll-in animations (previously felt sluggish)
-  const sr = ScrollReveal({
-      distance: '48px',
-      duration: 1200,
-      delay: 150,
-      easing: 'cubic-bezier(0.2, 0.9, 0.2, 1)',
-      // reset: true
-  })
-
-  sr.reveal('.hero__content, .section__title', { delay: 250 })
-  sr.reveal('.hero__image', { delay: 300, origin: 'top' })
-  sr.reveal('.about__content, .contact__content', { delay: 150, origin: 'left' })
-  sr.reveal('.about__image, .contact__form', { delay: 150, origin: 'right' })
-  sr.reveal('.resource__card, .story__card, .gallery__item', { interval: 60 })
-  sr.reveal('.footer__content', { interval: 60, origin: 'bottom' })
-}
+// ScrollReveal animations have been removed to ensure a professional, instantaneous clean load without janky staggering.
 
 /*=============== ACCESSIBILITY IMPROVEMENTS ===============*/
 // Add focus management for mobile menu
@@ -351,5 +335,27 @@ if (contactForm) {
                 submitButton.innerHTML = originalButtonHtml || '<i class="fas fa-paper-plane"></i> Send Message'
             }, 2000)
         }
+    })
+}
+
+/*=============== DARK LIGHT THEME ===============*/ 
+const themeButton = document.getElementById('theme-button')
+const selectedTheme = localStorage.getItem('selected-theme')
+
+if (selectedTheme === 'light') {
+  document.body.classList.add('light-theme')
+  if (themeButton) {
+      themeButton.classList.remove('fa-moon')
+      themeButton.classList.add('fa-sun')
+  }
+}
+
+if (themeButton) {
+    themeButton.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme')
+        const isLight = document.body.classList.contains('light-theme')
+        themeButton.classList.remove('fa-moon', 'fa-sun')
+        themeButton.classList.add(isLight ? 'fa-sun' : 'fa-moon')
+        localStorage.setItem('selected-theme', isLight ? 'light' : 'dark')
     })
 }

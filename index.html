@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
+    <script>if(localStorage.getItem("selected-theme") === "light"){document.body.classList.add("light-theme");}</script>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <!-- Header -->
@@ -29,7 +30,10 @@
         </span>
       </div>
       <!-- No navigation items on landing page -->
-    </nav>
+                <div class="nav__btns">
+                <i class="change-theme fas fa-moon" id="theme-button" aria-label="Toggle theme"></i>
+            </div>
+        </nav>
   </header>
 
   <!-- Main Content -->
@@ -75,7 +79,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="https://unpkg.com/scrollreveal" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
