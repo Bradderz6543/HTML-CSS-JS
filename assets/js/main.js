@@ -6,13 +6,20 @@ const navMenu = document.getElementById('nav-menu'),
 function setMenuA11yState(isOpen) {
     if (!navMenu) return
     navMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true')
-    if (navToggle) navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
+    document.body.classList.toggle('menu-open', isOpen)
+    if (navToggle) {
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
+        navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu')
+    }
 }
 
 function openMenu() {
     if (!navMenu) return
     navMenu.classList.add('show-menu')
     setMenuA11yState(true)
+    setTimeout(() => {
+        if (navClose) navClose.focus()
+    }, 120)
 }
 
 function closeMenu() {
@@ -25,7 +32,11 @@ function closeMenu() {
 /* Validate if constant exists */
 if(navToggle){
     navToggle.addEventListener('click', () =>{
-        openMenu()
+        if (navMenu && navMenu.classList.contains('show-menu')) {
+            closeMenu()
+        } else {
+            openMenu()
+        }
     })
 }
 
@@ -41,11 +52,28 @@ if(navClose){
 const navLink = document.querySelectorAll('.nav__link')
 
 function linkAction(){
-    const navMenu = document.getElementById('nav-menu')
     // When we click on each nav__link, we remove the show-menu class
     if (navMenu) closeMenu()
 }
 navLink.forEach(n => n.addEventListener('click', linkAction))
+
+document.addEventListener('click', (e) => {
+    if (!navMenu || !navToggle) return
+    if (!navMenu.classList.contains('show-menu')) return
+    if (window.innerWidth > 768) return
+
+    const clickedInsideMenu = navMenu.contains(e.target)
+    const clickedToggle = navToggle.contains(e.target)
+    if (!clickedInsideMenu && !clickedToggle) {
+        closeMenu()
+    }
+})
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        closeMenu()
+    }
+})
 
 /*=============== CHANGE BACKGROUND HEADER ===============*/
 function scrollHeader(){
@@ -124,8 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.getElementById('nav-menu')
     const navToggle = document.getElementById('nav-toggle')
     const navClose = document.getElementById('nav-close')
-    const navLinks = document.querySelectorAll('.nav__link')
-    
     // Focus management
     if (navToggle) {
         if (navToggle.tagName !== 'BUTTON') {
@@ -139,14 +165,12 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                openMenu()
+                if (navMenu && navMenu.classList.contains('show-menu')) {
+                    closeMenu()
+                } else {
+                    openMenu()
+                }
             }
-        })
-
-        navToggle.addEventListener('click', () => {
-            setTimeout(() => {
-                if (navClose) navClose.focus()
-            }, 100)
         })
     }
     
