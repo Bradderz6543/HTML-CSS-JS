@@ -356,6 +356,14 @@ img {
   color: var(--first-color);
 }
 
+.nav__logo-mark {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.18);
+}
+
 .nav__menu {
   position: relative;
 }
@@ -585,26 +593,14 @@ img {
 }
 
 .hero__visual {
-  max-width: 400px;
+  max-width: 520px;
   position: relative;
 }
 
 .hero__gif {
   width: 100%;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--elevation-2);
-  filter: grayscale(20%) contrast(1.1);
-  /* Editorial mood */
-}
-
-.hero__visual::after {
-  content: '';
-  position: absolute;
-  inset: -0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--first-color);
-  pointer-events: none;
-  opacity: 0.5;
+  box-shadow: none;
+  filter: none;
 }
 
 /*=============== ABOUT/MY STORY ===============*/
