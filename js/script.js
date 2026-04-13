@@ -28,144 +28,136 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.querySelector('.prev');
     const nextBtn = document.querySelector('.next');
     const indicatorsContainer = document.querySelector('.slide-indicators');
+    const slideshow = document.querySelector('.slideshow');
     let currentSlide = 0;
     let slideInterval;
     const slideDuration = 5000; // 5 seconds
 
-    // Create indicators
-    slides.forEach((_, index) => {
-        const indicator = document.createElement('div');
-        indicator.classList.add('slide-indicator');
-        if (index === 0) indicator.classList.add('active');
-        indicator.addEventListener('click', () => goToSlide(index));
-        indicatorsContainer.appendChild(indicator);
-    });
+    if (slides.length && prevBtn && nextBtn && indicatorsContainer && slideshow) {
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('slide-indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
 
-    const indicators = document.querySelectorAll('.slide-indicator');
+        const indicators = document.querySelectorAll('.slide-indicator');
 
-    function showSlide(index) {
-        // Hide all slides
-        slides.forEach(slide => slide.classList.remove('active'));
-        indicators.forEach(indicator => indicator.classList.remove('active'));
-        
-        // Show current slide
-        slides[index].classList.add('active');
-        indicators[index].classList.add('active');
-        currentSlide = index;
-    }
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
 
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            currentSlide = index;
+        }
 
-    function nextSlide() {
-        let newIndex = (currentSlide + 1) % slides.length;
-        showSlide(newIndex);
-    }
+        function nextSlide() {
+            const newIndex = (currentSlide + 1) % slides.length;
+            showSlide(newIndex);
+        }
 
+        function prevSlide() {
+            const newIndex = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(newIndex);
+        }
 
-    function prevSlide() {
-        let newIndex = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(newIndex);
-    }
+        function goToSlide(index) {
+            showSlide(index);
+            resetInterval();
+        }
 
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, slideDuration);
+        }
 
-    function goToSlide(index) {
-        showSlide(index);
-        resetInterval();
-    }
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
 
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
 
-    function startInterval() {
-        slideInterval = setInterval(nextSlide, slideDuration);
-    }
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
 
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+                resetInterval();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+                resetInterval();
+            }
+        });
 
-    function resetInterval() {
-        clearInterval(slideInterval);
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slideshow.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        slideshow.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const swipeDistance = touchStartX - touchEndX;
+
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                resetInterval();
+            }
+        }
+
+        showSlide(0);
         startInterval();
     }
 
-    // Event listeners
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
-        resetInterval();
-    });
+    const themeButton = document.getElementById('theme-button');
+    if (themeButton) {
+        let isLightTheme = document.body.classList.contains('light-theme');
 
+        const applyThemeIcon = () => {
+            themeButton.classList.toggle('fa-sun', isLightTheme);
+            themeButton.classList.toggle('fa-moon', !isLightTheme);
+            themeButton.setAttribute('aria-pressed', isLightTheme ? 'true' : 'false');
+        };
 
-    prevBtn.addEventListener('click', () => {
-        prevSlide();
-        resetInterval();
-    });
+        applyThemeIcon();
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-            nextSlide();
-            resetInterval();
-        } else if (e.key === 'ArrowLeft') {
-            prevSlide();
-            resetInterval();
-        }
-    });
-
-    // Touch events for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const slideshow = document.querySelector('.slideshow');
-
-    slideshow.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, false);
-
-    slideshow.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, false);
-
-    function handleSwipe() {
-        const swipeThreshold = 50; // Minimum distance to consider it a swipe
-        const swipeDistance = touchStartX - touchEndX;
-
-        if (Math.abs(swipeDistance) > swipeThreshold) {
-            if (swipeDistance > 0) {
-                nextSlide(); // Swipe left
-            } else {
-                prevSlide(); // Swipe right
+        themeButton.addEventListener('click', () => {
+            isLightTheme = !isLightTheme;
+            document.body.classList.toggle('light-theme', isLightTheme);
+            try {
+                localStorage.setItem('selected-theme', isLightTheme ? 'light' : 'dark');
+            } catch (error) {
+                // Ignore storage failures in privacy-restricted environments.
             }
-            resetInterval();
-        }
+            applyThemeIcon();
+        });
+
+        themeButton.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                themeButton.click();
+            }
+        });
     }
-
-
-    // Initialize
-    showSlide(0);
-    startInterval();
 });
-
-// Force desktop mode based on cookie (existing code, ensure it doesn't conflict)
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-var viewMode = getCookie("view-mode");
-var viewport = document.querySelector('meta[name="viewport"]');
-
-if (viewMode && viewport) { // Added checks for existence
-    if (viewMode == "desktop") {
-        viewport.setAttribute('content', 'width=1024');
-    } else if (viewMode == "mobile") {
-        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-    }
-}
 
 // Back to Top Button Functionality (Updated)
 const backToTopButton = document.querySelector('.back-to-top-button');
