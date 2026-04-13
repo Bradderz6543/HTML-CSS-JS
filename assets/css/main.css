@@ -595,10 +595,16 @@ img {
 .hero__visual {
   max-width: 520px;
   position: relative;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: rgba(12, 12, 14, 0.92);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
 }
 
 .hero__gif {
   width: 100%;
+  border-radius: var(--radius-md);
   box-shadow: none;
   filter: none;
 }
